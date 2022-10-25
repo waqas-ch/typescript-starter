@@ -6,7 +6,7 @@ import { BaseInterceptor } from './common/exception.intercept';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalInterceptors(new BaseInterceptor());
+  // app.useGlobalInterceptors(new BaseInterceptor());
 
   app.enableVersioning({
     defaultVersion: "1.0",

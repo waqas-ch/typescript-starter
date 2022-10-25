@@ -13,7 +13,7 @@ import { AuthService } from './auth.service';
   imports: [TypeOrmModule.forFeature([User])],
   controllers: [AuthController],
   providers: [AuthService,
-    { provide: APP_FILTER, useClass: HttpExceptionFilter },
+    // { provide: APP_FILTER, useClass: HttpExceptionFilter },
     // { provide: HTTP_INTERCEPTORS, useClass:BaseInterceptor , multi: true },
   ],
 })

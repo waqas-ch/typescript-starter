@@ -9,5 +9,5 @@ export class BaseInterceptor implements NestInterceptor {
 
     return next.handle().pipe(catchError(err=>
         throwError(new HttpException('new message',HttpStatus.BAD_GATEWAY))));
-  }z
+  }
 }

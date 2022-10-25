@@ -5,12 +5,13 @@ import { Request, Response } from 'express';
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
   catch(exception: HttpException, host: ArgumentsHost): void {
-    console.log('HttpExceptionFilter');
 
     const ctx: HttpArgumentsHost = host.switchToHttp();
     const response: Response = ctx.getResponse<Response>();
     const request: Request = ctx.getRequest<Request>();
     const status: number = exception.getStatus();
+    console.log('HttpExceptionFilter');
+
 
     response.status(status).json({
       filter: 'HttpExceptionFilter',

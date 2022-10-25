@@ -12,6 +12,8 @@ import {
   Put,
   UseFilters,
   UseInterceptors,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { User } from './auth.entity';
 import { AuthService } from './auth.service';
@@ -24,12 +26,12 @@ import { BaseInterceptor } from 'src/common/exception.intercept';
 export class AuthController {
   constructor(private authService: AuthService) {}
   @Get('students')
-  @UseFilters(new HttpExceptionFilter())
+//   @UseFilters(new HttpExceptionFilter())
   @UseInterceptors(BaseInterceptor)
 
   getName() {
-    throw new HttpException('Conflict',HttpStatus.CONFLICT)
-    // return this.authService.findAll();
+    // throw new HttpException('Conflict',HttpStatus.CONFLICT)
+    return this.authService.findAll();
   }
   @Get('student/:id')
   getOneStudent(@Param('id') id: string) {
@@ -43,6 +45,7 @@ export class AuthController {
 
   }
   @Post('student')
+  @UsePipes(new ValidationPipe({transform:true}))
   @HttpCode(HttpStatus.ACCEPTED)
   @ApiOkResponse({description:'OK'})
   @ApiInternalServerErrorResponse({description:'Error'})
